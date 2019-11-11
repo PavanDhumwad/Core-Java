@@ -1,1 +1,1 @@
-# Core-Java
+# Few basic Core Java programs
