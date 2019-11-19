@@ -1,7 +1,5 @@
 package Collections;
 
-import java.util.HashSet;
-
 public class Equals
 {
     public static void main(String[] args)
