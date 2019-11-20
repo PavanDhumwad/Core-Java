@@ -5,45 +5,45 @@ import java.util.concurrent.locks.ReentrantLock;
 public class SubstituteForSynchronized
 {
     public static void main(String[] args) {
-        Display d = new Display();
-        MyThread pavan = new MyThread(d,"Pavan");
-        MyThread dhumwad = new MyThread(d,"Dhumwad");
-        pavan.start();
-        dhumwad.start();
+        Callme d = new Callme();
+        new Caller(d,"Pavan");
+        new Caller(d,"Dhumwad");
     }
 }
-class Display
+class Callme
 {
-    ReentrantLock l = new ReentrantLock();
     public void wish(String name)
     {
-        l.lock();
-        
-        try {
-            for(int i=0;i<5;i++) {
-                System.out.println("Hello:"+name);
-                Thread.sleep(2000);
-            }
-        }
-        catch (InterruptedException e)
+        System.out.print("[" + name);
+        try
         {
-            e.printStackTrace();
+            Thread.sleep(1000);
         }
-        l.unlock();
+        catch(InterruptedException e)
+        {
+            System.out.println("Interrupted");
+        }
+        System.out.println("]");
     }
 }
 
-class MyThread extends Thread
+class Caller implements Runnable
 {
-    Display d;
+    Callme d;
     String name;
-    MyThread(Display d, String name)
+    Thread t;
+    static ReentrantLock l = new ReentrantLock();
+    Caller(Callme d, String name)
     {
         this.d = d;
         this.name = name;
+        t = new Thread(this);
+        t.start();
     }
     public void run()
     {
+        l.lock();
         d.wish(name);
+        l.unlock();
     }
 }
