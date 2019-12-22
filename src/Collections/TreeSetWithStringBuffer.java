@@ -5,7 +5,8 @@ import java.util.TreeSet;
 
 public class TreeSetWithStringBuffer
 {
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         TreeSet t = new TreeSet(new SBNotImpComparableIntrf());
         System.out.println("StringBuffer does not implement Comparable interf. So we need provide " +
                 "implementation of Comparator interf");
