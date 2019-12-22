@@ -28,5 +28,4 @@ public class UsageOfEntrySet
 			System.out.println(entry.getKey()+"-"+entry.getValue());
 		}
 	}
-
 }
