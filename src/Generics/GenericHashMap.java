@@ -25,17 +25,19 @@ public class GenericHashMap
     }
     private static <T> HashMap<T,Integer> countFruit(ArrayList<ArrayList<T>>fruit) {
         HashMap<T, Integer> count = new HashMap<>();
+
         for (int i = 0; i < fruit.size(); i++) {
             for (int j = 0; j < fruit.get(i).size(); j++)
             {
-                if (count.containsKey(fruit.get(i).get(j)))
+                count.put(fruit.get(i).get(j), count.getOrDefault(fruit.get(i).get(j),0)+1);
+                /*if (count.containsKey(fruit.get(i).get(j)))
                 {
                     int previousCount = count.get(fruit.get(i).get(j));
                     previousCount++;
                     count.put(fruit.get(i).get(j), previousCount);
                 }
                 else
-                    count.put(fruit.get(i).get(j), 1);
+                    count.put(fruit.get(i).get(j), 1);*/
             }
 
         }
